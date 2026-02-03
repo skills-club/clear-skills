@@ -44,6 +44,7 @@
     },
     "dependencies": {
         "cac": "^6.7.14",
+        "citty": "^0.2.0",
         "defu": "^6.1.4",
         "find-up": "^8.0.0",
         "glob": "^13.0.0",
@@ -60,7 +61,8 @@
         "tsdown": "^0.20.1",
         "tsdown-preset": "^1.0.1",
         "tsx": "^4.21.0",
-        "typescript": "^5.9.3"
+        "typescript": "^5.9.3",
+        "xdg-basedir": "^5.1.0"
     },
     "simple-git-hooks": {
         "pre-commit": "npx lint-staged",
