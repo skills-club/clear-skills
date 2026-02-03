@@ -49,7 +49,7 @@ export interface IAgentConfig {
     displayName: string
     skillsDir: string
     /** Global skills directory. Set to undefined if the agent doesn't support global installation. */
-    globalSkillsDir: string | undefined
+    globalSkillsDir: string
 }
 
 export interface IConfig {
