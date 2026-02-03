@@ -1,0 +1,72 @@
+{
+    "name": "clear-skills",
+    "type": "module",
+    "version": "0.0.0",
+    "packageManager": "pnpm@10.15.1",
+    "description": "Clear AI skills — remove skill files from the current project or globally",
+    "author": "lonewolfyx <olddrivero.king@qq.com>",
+    "license": "MIT",
+    "homepage": "https://github.com/lonewolfyx/clear-skills",
+    "bugs": {
+        "url": "https://github.com/lonewolfyx/clear-skills/issues"
+    },
+    "keywords": [
+        "ai",
+        "skills",
+        "skill",
+        "clear",
+        "clear-skills",
+        "clear-skill",
+        "kill-clear"
+    ],
+    "exports": {
+        ".": "./dist/cli.mjs",
+        "./package.json": "./package.json"
+    },
+    "types": "./dist/cli.d.mts",
+    "bin": {
+        "clear-skills": "./bin/cli.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "tsdown --watch",
+        "build": "tsdown",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix",
+        "prepublishOnly": "pnpm build",
+        "prepare": "simple-git-hooks"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org",
+        "access": "public"
+    },
+    "dependencies": {
+        "cac": "^6.7.14",
+        "defu": "^6.1.4",
+        "find-up": "^8.0.0",
+        "glob": "^13.0.0",
+        "jiti": "^2.6.1"
+    },
+    "devDependencies": {
+        "@antfu/eslint-config": "^6.7.3",
+        "@lonewolfyx/tsconfig": "^0.0.6",
+        "@types/node": "^25.0.3",
+        "eslint": "^9.39.2",
+        "lint-staged": "^16.2.7",
+        "picocolors": "^1.1.1",
+        "simple-git-hooks": "^2.13.1",
+        "tsdown": "^0.20.1",
+        "tsdown-preset": "^1.0.1",
+        "tsx": "^4.21.0",
+        "typescript": "^5.9.3"
+    },
+    "simple-git-hooks": {
+        "pre-commit": "npx lint-staged",
+        "commit-msg": "node scripts/verify-commit.js"
+    },
+    "lint-staged": {
+        "*": "eslint --fix"
+    }
+}
