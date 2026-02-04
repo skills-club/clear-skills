@@ -59,3 +59,12 @@ export interface IConfig {
         [K in IAgentType]: IAgentConfig;
     }
 }
+
+export interface ISkillInfo {
+    agent: IAgentType
+    path: string
+    skillDir: string
+    skillMdPath: string
+}
+
+export type ISkillsMap = Record<string, ISkillInfo>
