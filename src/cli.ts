@@ -11,8 +11,8 @@ import { formattingSkills } from '@/skills.ts'
 import { sanitizeName } from '@/utils.ts'
 import { description, name, version } from '../package.json'
 
-const getSkillPath = (config: IConfig, agentType: IAgentType | 'claude'): string => {
-    const agent = config.agents[(agentType === 'claude' ? 'claude-code' : agentType)]
+const getSkillPath = (config: IConfig, agentType: IAgentType): string => {
+    const agent = config.agents[agentType]
 
     return config.global
         ? agent.globalSkillsDir
