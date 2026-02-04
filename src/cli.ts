@@ -1,7 +1,7 @@
-import type { IAgentType, IConfig } from '@/types.ts'
+import type { IAgentType, IConfig, ISkillInfo } from '@/types.ts'
 import { basename, dirname, join } from 'node:path'
 import * as process from 'node:process'
-import { intro, log, outro } from '@clack/prompts'
+import { cancel, intro, isCancel, log, multiselect, outro } from '@clack/prompts'
 import { defineCommand, runMain } from 'citty'
 import { glob } from 'glob'
 import pc from 'picocolors'
@@ -56,7 +56,7 @@ const main = defineCommand({
         }
 
         const skills = formattingSkills(skillsMap)
-        console.log(skills)
+        // console.log(skills)
 
         log.info(`Found ${pc.green(skillsMap.size)} skills`)
 
@@ -64,6 +64,35 @@ const main = defineCommand({
             outro('No project skills found.')
             process.exit(0)
         }
+
+        const selectOptions = Object.entries(skills).map(([skillKey, items]) => ({
+            value: skillKey,
+            label: skillKey,
+            hint: items.map(item => item.agent).join(', '),
+        }))
+
+        const selectedSkill = await multiselect({
+            message: 'Select one or more skills to delete:',
+            options: selectOptions,
+            initialValues: selectOptions.map(option => option.value),
+            required: true,
+        }) as string[]
+
+        if (isCancel(selectedSkill)) {
+            cancel('Operation cancelled')
+            process.exit(0)
+        }
+
+        for (const skillKey of selectedSkill) {
+            for (const skill of skills[skillKey] as ISkillInfo[]) {
+                await import('node:fs/promises').then(fs => fs.rm(skill.skillDir, {
+                    force: true,
+                    recursive: true,
+                }))
+            }
+        }
+
+        outro(pc.green('Done!'))
     },
 })
 
