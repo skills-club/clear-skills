@@ -1,6 +1,7 @@
 import type { IAgentType, IConfig } from '@/types.ts'
 import { basename, dirname, join } from 'node:path'
-import { intro, log } from '@clack/prompts'
+import * as process from 'node:process'
+import { intro, log, outro } from '@clack/prompts'
 import { defineCommand, runMain } from 'citty'
 import { glob } from 'glob'
 import pc from 'picocolors'
@@ -58,6 +59,11 @@ const main = defineCommand({
         console.log(skills)
 
         log.info(`Found ${pc.green(skillsMap.size)} skills`)
+
+        if (!skillsMap.size) {
+            outro('No project skills found.')
+            process.exit(0)
+        }
     },
 })
 
