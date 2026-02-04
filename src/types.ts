@@ -52,12 +52,12 @@ export interface IAgentConfig {
     globalSkillsDir: string
 }
 
+export type AgentsType = Record<IAgentType, IAgentConfig & { agentDir: string }>
+
 export interface IConfig {
     cwd: string
     global: boolean
-    agents: {
-        [K in IAgentType]: IAgentConfig;
-    }
+    agents: AgentsType
 }
 
 export interface ISkillInfo {
