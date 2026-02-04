@@ -61,10 +61,10 @@ export interface IConfig {
 }
 
 export interface ISkillInfo {
-    agent: IAgentType
+    agent: string
     path: string
     skillDir: string
     skillMdPath: string
 }
 
-export type ISkillsMap = Record<string, ISkillInfo>
+export type ISkillsMap = Record<string, ISkillInfo[]>
