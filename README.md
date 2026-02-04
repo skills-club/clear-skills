@@ -14,4 +14,4 @@ npx clear-skills
 
 ## License
 
-[MIT](./LICENSE) License © [lonewolfyx](https://github.com/lonewolfyx)
+[MIT](./LICENSE) License © [Skills Club](https://github.com/skills-club)
