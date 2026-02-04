@@ -19,15 +19,6 @@ const getSkillPath = (config: IConfig, agentType: IAgentType): string => {
         : join(config.cwd, agent.skillsDir)
 }
 
-const getAgentPath = (config: IConfig, agentType: IAgentType): string => {
-    const agent = config.agents[agentType]
-    const skillPath = config.global
-        ? agent.globalSkillsDir
-        : join(config.cwd, agent.skillsDir)
-
-    return dirname(skillPath)
-}
-
 const isDirEmpty = async (dirPath: string): Promise<boolean> => {
     try {
         const files = await fs.readdir(dirPath)
