@@ -57,7 +57,7 @@ const main = defineCommand({
         log.info(`Found ${pc.green(skillsMap.size)} skills`)
 
         if (!skillsMap.size) {
-            outro('No project skills found.')
+            outro(`No ${config.global ? 'global' : 'project'} skills found.`)
             process.exit(0)
         }
 
