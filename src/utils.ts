@@ -48,7 +48,7 @@ export const shouldDeleteEmptySkillsDirs = async (emptySkillsDirs: string[]): Pr
     const agent = emptySkillsDirs.map(p => sanitizeName(basename(resolve(p, '../'))))
 
     const confirmed = await confirm({
-        message: `${pc.yellow(`Empty 'skill' directories found under agent types: ${pc.blue(agent.join(','))}.`)}. Delete them?`,
+        message: `${pc.yellow(`Empty 'skill' directories found under agent types: ${pc.blue(agent.join(','))}`)}. Delete them?`,
         initialValue: true,
     })
 
