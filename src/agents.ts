@@ -108,6 +108,12 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         skillsDir: '.agents/skills',
         globalSkillsDir: join(home, '.cursor/skills'),
     },
+    'deepagents': {
+        name: 'deepagents',
+        displayName: 'Deep Agents',
+        skillsDir: '.agents/skills',
+        globalSkillsDir: join(home, '.deepagents/agent/skills'),
+    },
     'droid': {
         name: 'droid',
         displayName: 'Droid',
