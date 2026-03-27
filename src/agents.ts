@@ -10,6 +10,25 @@ const configHome = xdgConfig ?? join(home, '.config')
 const codexHome = process.env.CODEX_HOME?.trim() || join(home, '.codex')
 const claudeHome = process.env.CLAUDE_CONFIG_DIR?.trim() || join(home, '.claude')
 
+export function getOpenClawGlobalSkillsDir(
+    homeDir = home,
+    pathExists: (path: string) => boolean = existsSync,
+) {
+    if (pathExists(join(homeDir, '.openclaw'))) {
+        return join(homeDir, '.openclaw/skills')
+    }
+
+    if (pathExists(join(homeDir, '.clawdbot'))) {
+        return join(homeDir, '.clawdbot/skills')
+    }
+
+    if (pathExists(join(homeDir, '.moltbot'))) {
+        return join(homeDir, '.moltbot/skills')
+    }
+
+    return join(homeDir, '.openclaw/skills')
+}
+
 export const agents: Record<IAgentType, IAgentConfig> = {
     'amp': {
         name: 'amp',
@@ -39,11 +58,7 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         name: 'openclaw',
         displayName: 'OpenClaw',
         skillsDir: 'skills',
-        globalSkillsDir: existsSync(join(home, '.openclaw'))
-            ? join(home, '.openclaw/skills')
-            : existsSync(join(home, '.clawdbot'))
-                ? join(home, '.clawdbot/skills')
-                : join(home, '.moltbot/skills'),
+        globalSkillsDir: getOpenClawGlobalSkillsDir(),
     },
     'cline': {
         name: 'cline',
