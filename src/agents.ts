@@ -48,6 +48,12 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         skillsDir: '.augment/skills',
         globalSkillsDir: join(home, '.augment/skills'),
     },
+    'bob': {
+        name: 'bob',
+        displayName: 'IBM Bob',
+        skillsDir: '.bob/skills',
+        globalSkillsDir: join(home, '.bob/skills'),
+    },
     'claude-code': {
         name: 'claude-code',
         displayName: 'Claude Code',

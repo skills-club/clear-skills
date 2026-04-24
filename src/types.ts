@@ -48,6 +48,7 @@ export type IAgentType
         | 'pochi'
         | 'adal'
         | 'universal'
+        | 'bob'
 
 export interface IAgentConfig {
     name: string
