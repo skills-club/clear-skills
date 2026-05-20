@@ -9,6 +9,7 @@ const home = homedir()
 const configHome = xdgConfig ?? join(home, '.config')
 const codexHome = process.env.CODEX_HOME?.trim() || join(home, '.codex')
 const claudeHome = process.env.CLAUDE_CONFIG_DIR?.trim() || join(home, '.claude')
+const vibeHome = process.env.VIBE_HOME?.trim() || join(home, '.vibe')
 
 export function getOpenClawGlobalSkillsDir(
     homeDir = home,
@@ -30,6 +31,15 @@ export function getOpenClawGlobalSkillsDir(
 }
 
 export const agents: Record<IAgentType, IAgentConfig> = {
+    'aider-desk': {
+        name: 'aider-desk',
+        displayName: 'AiderDesk',
+        skillsDir: '.aider-desk/skills',
+        globalSkillsDir: join(home, '.aider-desk/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(home, '.aider-desk'))
+        },
+    },
     'amp': {
         name: 'amp',
         displayName: 'Amp',
@@ -97,6 +107,15 @@ export const agents: Record<IAgentType, IAgentConfig> = {
             return existsSync(join(home, '.cline'))
         },
     },
+    'codearts-agent': {
+        name: 'codearts-agent',
+        displayName: 'CodeArts Agent',
+        skillsDir: '.codeartsdoer/skills',
+        globalSkillsDir: join(home, '.codeartsdoer/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(home, '.codeartsdoer'))
+        },
+    },
     'codebuddy': {
         name: 'codebuddy',
         displayName: 'CodeBuddy',
@@ -104,6 +123,24 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         globalSkillsDir: join(home, '.codebuddy/skills'),
         detectInstalled: async () => {
             return existsSync(join(process.cwd(), '.codebuddy')) || existsSync(join(home, '.codebuddy'))
+        },
+    },
+    'codemaker': {
+        name: 'codemaker',
+        displayName: 'Codemaker',
+        skillsDir: '.codemaker/skills',
+        globalSkillsDir: join(home, '.codemaker/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(home, '.codemaker'))
+        },
+    },
+    'codestudio': {
+        name: 'codestudio',
+        displayName: 'Code Studio',
+        skillsDir: '.codestudio/skills',
+        globalSkillsDir: join(home, '.codestudio/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(home, '.codestudio'))
         },
     },
     'codex': {
@@ -169,6 +206,24 @@ export const agents: Record<IAgentType, IAgentConfig> = {
             return existsSync(join(home, '.deepagents'))
         },
     },
+    'devin': {
+        name: 'devin',
+        displayName: 'Devin for Terminal',
+        skillsDir: '.devin/skills',
+        globalSkillsDir: join(configHome, 'devin/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(configHome, 'devin'))
+        },
+    },
+    'dexto': {
+        name: 'dexto',
+        displayName: 'Dexto',
+        skillsDir: '.agents/skills',
+        globalSkillsDir: join(home, '.agents/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(home, '.dexto'))
+        },
+    },
     'droid': {
         name: 'droid',
         displayName: 'Droid',
@@ -185,6 +240,15 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         globalSkillsDir: join(home, '.firebender/skills'),
         detectInstalled: async () => {
             return existsSync(join(home, '.firebender'))
+        },
+    },
+    'forgecode': {
+        name: 'forgecode',
+        displayName: 'ForgeCode',
+        skillsDir: '.forge/skills',
+        globalSkillsDir: join(home, '.forge/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(home, '.forge'))
         },
     },
     'gemini-cli': {
@@ -212,6 +276,15 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         globalSkillsDir: join(configHome, 'goose/skills'),
         detectInstalled: async () => {
             return existsSync(join(configHome, 'goose'))
+        },
+    },
+    'hermes-agent': {
+        name: 'hermes-agent',
+        displayName: 'Hermes Agent',
+        skillsDir: '.hermes/skills',
+        globalSkillsDir: join(home, '.hermes/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(home, '.hermes'))
         },
     },
     'junie': {
@@ -281,9 +354,9 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         name: 'mistral-vibe',
         displayName: 'Mistral Vibe',
         skillsDir: '.vibe/skills',
-        globalSkillsDir: join(home, '.vibe/skills'),
+        globalSkillsDir: join(vibeHome, 'skills'),
         detectInstalled: async () => {
-            return existsSync(join(home, '.vibe'))
+            return existsSync(vibeHome)
         },
     },
     'mux': {
@@ -345,8 +418,18 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         displayName: 'Replit',
         skillsDir: '.agents/skills',
         globalSkillsDir: join(configHome, 'agents/skills'),
+        showInUniversalList: false,
         detectInstalled: async () => {
             return existsSync(join(process.cwd(), '.replit'))
+        },
+    },
+    'rovodev': {
+        name: 'rovodev',
+        displayName: 'Rovo Dev',
+        skillsDir: '.rovodev/skills',
+        globalSkillsDir: join(home, '.rovodev/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(home, '.rovodev'))
         },
     },
     'roo': {
@@ -356,6 +439,15 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         globalSkillsDir: join(home, '.roo/skills'),
         detectInstalled: async () => {
             return existsSync(join(home, '.roo'))
+        },
+    },
+    'tabnine-cli': {
+        name: 'tabnine-cli',
+        displayName: 'Tabnine CLI',
+        skillsDir: '.tabnine/agent/skills',
+        globalSkillsDir: join(home, '.tabnine/agent/skills'),
+        detectInstalled: async () => {
+            return existsSync(join(home, '.tabnine'))
         },
     },
     'trae': {
@@ -435,6 +527,7 @@ export const agents: Record<IAgentType, IAgentConfig> = {
         displayName: 'Universal',
         skillsDir: '.agents/skills',
         globalSkillsDir: join(configHome, 'agents/skills'),
+        showInUniversalList: false,
         detectInstalled: async () => false,
     },
 }

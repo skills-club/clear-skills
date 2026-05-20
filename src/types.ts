@@ -4,13 +4,17 @@ export interface IOptions {
 }
 
 export type IAgentType
-    = | 'amp'
+    = 'aider-desk'
+        | 'amp'
         | 'antigravity'
         | 'augment'
         | 'claude-code'
         | 'openclaw'
         | 'cline'
+        | 'codearts-agent'
         | 'codebuddy'
+        | 'codemaker'
+        | 'codestudio'
         | 'codex'
         | 'command-code'
         | 'continue'
@@ -18,11 +22,15 @@ export type IAgentType
         | 'crush'
         | 'cursor'
         | 'deepagents'
+        | 'devin'
+        | 'dexto'
         | 'droid'
         | 'firebender'
+        | 'forgecode'
         | 'gemini-cli'
         | 'github-copilot'
         | 'goose'
+        | 'hermes-agent'
         | 'iflow-cli'
         | 'junie'
         | 'kilo'
@@ -39,7 +47,9 @@ export type IAgentType
         | 'qoder'
         | 'qwen-code'
         | 'replit'
+        | 'rovodev'
         | 'roo'
+        | 'tabnine-cli'
         | 'trae'
         | 'trae-cn'
         | 'warp'
@@ -57,6 +67,8 @@ export interface IAgentConfig {
     /** Global skills directory. Set to undefined if the agent doesn't support global installation. */
     globalSkillsDir: string
     detectInstalled: () => Promise<boolean>
+    /** Whether to show this agent in the universal agents list. Defaults to true. */
+    showInUniversalList?: boolean
 }
 
 export type AgentsType = Record<IAgentType, IAgentConfig & { agentDir: string }>
